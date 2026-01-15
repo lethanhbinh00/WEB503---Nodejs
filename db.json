@@ -1,0 +1,18 @@
+{
+  "products": [
+    {
+      "id": 1,
+      "name": "Áo thun nam",
+      "price": 150000,
+      "description": "Áo cotton 100%",
+      "category": "Thời trang"
+    },
+    {
+      "id": 2,
+      "name": "Quần jean",
+      "price": 350000,
+      "description": "Quần jean co giãn",
+      "category": "Thời trang"
+    }
+  ]
+}
