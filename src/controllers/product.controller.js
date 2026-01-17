@@ -1,6 +1,11 @@
 import Product from "../models/product.model";
+import Joi from 'joi';
 
-// Lấy danh sách
+const schema = Joi.object({
+    name: Joi.string().required(),
+    price: Joi.number().required(),
+})
+
 export const getAll = async (req, res) => {
     try {
         const products = await Product.find();
@@ -29,10 +34,14 @@ export const getOne = async (req, res) => {
 };
 // Thêm sản phẩm
 export const createOne = async (req, res) => {
-    try {
+    try{
+        const {error} = schema.validate(req.body);
+        if(error){
+            return res.status(400).json(error.details.map(item => item.message));
+        }
         const product = await Product.create(req.body);
         return res.status(201).json(product);
-    } catch (error) {
+    } catch(error){
         return res.status(500).json({
             message: "Loi khi tao san pham",
             error: error.message,
