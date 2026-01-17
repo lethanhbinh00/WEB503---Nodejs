@@ -34,14 +34,10 @@ export const getOne = async (req, res) => {
 };
 // Thêm sản phẩm
 export const createOne = async (req, res) => {
-    try{
-        const {error} = schema.validate(req.body);
-        if(error){
-            return res.status(400).json(error.details.map(item => item.message));
-        }
+    try {
         const product = await Product.create(req.body);
         return res.status(201).json(product);
-    } catch(error){
+    } catch (error) {
         return res.status(500).json({
             message: "Loi khi tao san pham",
             error: error.message,
